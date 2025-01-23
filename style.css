@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.main-outer{
+    width: 100%;
+    height: 100vh;
+    padding: 10px;
+    background-color: #abc5ab;
+}

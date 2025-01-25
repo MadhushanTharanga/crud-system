@@ -25,17 +25,20 @@ function validateForm(){
     const customer = new Customer(Math.floor(Math.random()*10),name,address,email,age);
     addCustomer(customer);
     loadTable();
-    const clear=()=>{
-        name.value = '';
-        address.value = '';
-        name.value = '';
-        name.value = '';
-    }
+    clear();
 
 }
 
-
-
+let name = document.getElementById("name");
+let address = document.getElementById("address");
+let email = document.getElementById("email");
+let age = document.getElementById("age");
+const clear=()=>{
+    name.value = '';
+    address.value = '';
+    email.value = '';
+    age.value = '';
+}
 class Customer{
     #id;
     #name;
@@ -111,12 +114,12 @@ function loadTable(){
             </td>
             <td>
                 <div class="t-outer">
-                    <input type="button" onclick="readyToUpdate('${temp.getCustomerId()}')" value="Modify" class="btn btn-success">
+                    <input type="button" onclick="readyToUpdate('${temp.getCustomerId()}')" value="Update" class="btn btn-success">
                 </div>
             </td>
             <td>
                 <div class="t-outer">
-                    <input type="button" onclick="deleteCustomer('${temp.getCustomerId()}')"" class="btn btn-danger" value="Remove">
+                    <input type="button" onclick="deleteCustomer('${temp.getCustomerId()}')"" class="btn btn-danger" value="Delete">
                 </div>
             </td>
             

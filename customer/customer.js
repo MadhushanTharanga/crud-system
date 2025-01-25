@@ -127,3 +127,88 @@ function loadTable(){
         tablebody.appendChild(tr);
     }
 }
+let id = undefined;
+const setData = (data) =>{
+    id = data.getCustomerId();
+    name = data.getCustomerName();
+    address = data.getCustomerName();
+    email = data.getCustomerName();
+    age = data.getCustomerName();
+    document.getElementById('saveButton').innerHTML = 'Update Customer';
+}
+
+const readyToUpdate = (customerId) =>{
+    let selectedCustomer = customerDatabase.find((e)=>e.getCustomerId()==customerId);
+    if(!selectedCustomer){
+        alert('something went wrong...')
+        return;
+    }
+    setData(selectedCustomer);
+}
+const deleteCustomer = (customerId)=>{
+    if(confirm('Are you sure whether do you want to delete this customer?')){
+        let selectedCustomer = customerDatabase.find((e)=>e.getCustomerId()==customerId);
+        if(!selectedCustomer){
+            alert('something went wrong...')
+            return;
+        }
+        customerDatabase.splice(customerId,1);
+        loadTable();
+    }
+}
+function generateCustomerId() {
+    // customer id Format [C-1]
+    if (customerDatabase.length == 0) {
+        return 'C-1';
+    }
+    let selectedData =
+        customerDatabase[customerDatabase.length - 1];
+    if (!selectedData) {
+        return null;
+    } else {
+        let selectedLastId =
+            selectedData.getCustomerId().toString().split('-')[1]; // [C,5]
+        selectedLastId++;
+        return 'C-' + selectedLastId;
+    }
+
+}
+const createUpdateCustomer = () => {
+    if (
+        document.getElementById('btnSaveUpdate')
+            .innerHTML.includes('Save Customer')
+    ) {
+
+        let customer = new Customer(
+            generateCustomerId(),
+            name.value,
+            address.value,
+            email.value,
+            age.value
+        );
+        pushCustomer(customer);
+    } else if (
+        document.getElementById('btnSaveUpdate')
+            .innerHTML.includes('Update Customer')
+        && id
+    ) {
+        let selectedIndex =
+            customerDatabase.findIndex((selectedData)=>selectedData
+                .getCustomerId()==id);
+        if(selectedIndex!=-1){
+            customerDatabase[selectedIndex] = new Customer(
+                id,
+                name.value,
+                address.value,
+                email.value,
+                age.value
+            );
+            clear();
+            loadTable();
+            document.getElementById('saveButton')
+                .innerHTML='Save Customer';
+        }
+    }
+
+
+}

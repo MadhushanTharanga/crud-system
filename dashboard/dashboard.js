@@ -5,3 +5,6 @@ const customerDashboard=()=>{
 const productDashboard = ()=>{
     window.location.href='../product/product.html';
 }
+const orderDashboard = () =>{
+    window.location.href='../order/order.html';
+}

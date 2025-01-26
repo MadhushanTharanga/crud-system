@@ -1,0 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.main-outer{
+    height: 100vh;
+    background-color: #abc5ab;
+    padding: 10px;
+}
